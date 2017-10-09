@@ -4,10 +4,13 @@
 
 input=$1
 
+## change libDir as per your dir. It may be /usr/local/lib/libwebp/bin/
+libDir="libwebp/bin/"
+
 image2webp () {
 echo $imageName
 ## image conversion by google webp lib
-libwebp/bin/cwebp -q 80 $image -o $imageName.webp
+$libDir/cwebp -q 80 $image -o $imageName.webp
 #/usr/local/lib/libwebp/bin/cwebp -q 80 $image -o $output/$imageName.webp
 if [ $? != 0 ];then
         echo "Error in conversion of images"
