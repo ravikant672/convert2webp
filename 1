@@ -1,0 +1,35 @@
+#!bin/bash
+## By : Ravikant
+## Date : 7 Oct 2017
+
+input=$1
+
+image2webp () {
+echo $imageName
+## image conversion by google webp lib
+libwebp/bin/cwebp -q 80 $input -o $imageName.webp
+#/usr/local/lib/libwebp/bin/cwebp -q 80 $image -o $output/$imageName.webp
+if [ $? != 0 ];then
+        echo "Error in conversion of images"
+        exit
+fi
+}
+
+if [ -f $input ];then
+	echo "its a file"
+	imageName=$(echo $input | rev | cut -d'.' -f 2- | rev )
+	image2webp
+fi
+if [ -d $input ];then
+	echo "its a directory"
+	for f in $input/*;do
+		echo $f
+		fileformat=$(file --mime-type -b $f)
+		if [ -d $f ];then
+			echo "its directory"
+		elif [ $fileformat = "image/png" ] || [ $fileformat = "image/jpg" ] || [ $fileformat = "image/jpeg" ];then
+			echo "its a proper file format"
+ 
+		fi
+	done
+fi
