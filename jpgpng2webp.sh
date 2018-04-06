@@ -2,6 +2,7 @@
 ## By : Ravikant
 ## Date : 7 Oct 2017
 
+# This input is image file or directory
 input=$1
 
 ## change libDir as per your dir. It may be /usr/local/lib/libwebp/bin/
